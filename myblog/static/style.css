@@ -7,7 +7,6 @@ html {
   body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 14px;
-
     width: 800px;
     margin: 0 auto;
     padding: 10px;
@@ -22,12 +21,12 @@ html {
     font-weight: bold;
     margin-bottom: 20px;
     text-align: center;
-    color: rgb(119, 114, 114);
+    color: rgb(119, 115, 115);
   }
   
   h2, h3, h4, h5, h6 {
     font-family: serif;
-    color: #565a5c;
+    color: #627887;
     margin: 1rem 0;
   }
   
@@ -37,7 +36,7 @@ html {
   
   hr {
     border: none;
-    border-top: 1px solid lightgray;
+    border-top: 1px solid rgb(239, 239, 239);
   }
   
   nav {
@@ -147,3 +146,10 @@ html {
     align-self: start;
     min-width: 10em;
   }
+
+  #username, #password  {
+    width: 300px;
+    font-size: 14px;
+    padding: 2px;
+  }
+
