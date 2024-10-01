@@ -16,6 +16,14 @@ def index():
     return render_template('blog/index.html', posts=posts)
 
 
+@bp.route("/<int:post_id>")
+def get_page(post_id):
+    post = Post.get_post(post_id)
+    if not post:
+        abort(404)
+    return render_template("blog/permalink.html", post=post)
+    
+
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
