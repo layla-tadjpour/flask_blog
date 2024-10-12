@@ -1,9 +1,11 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 # Initialize SQLAlchemy without app context, it will be bound in the create_app function
 db = SQLAlchemy()
+migrate = Migrate()
 
 def create_app(test_config=None):
     # create and configure the app
@@ -12,7 +14,7 @@ def create_app(test_config=None):
         SECRET_KEY='dev',
         SQLALCHEMY_DATABASE_URI=os.environ.get('DATABASE_URL') or 
             'postgresql://layla@localhost/blog_db',
-        SQLALCHEMY_TRACK_MODIFICATIONS=False,
+            SQLALCHEMY_TRACK_MODIFICATIONS=False,
     )
 
     if test_config is None:
@@ -30,6 +32,7 @@ def create_app(test_config=None):
 
     # Initialize SQLAlchemy with this app
     db.init_app(app)
+    migrate.init_app(app, db)
 
 
     # a simple page that says hello
