@@ -1,0 +1,24 @@
+<div class="post">
+    <div class="post-heading">
+      <div class="post-title">
+        <a href="{{ url_for('blog.get_page', 
+                              year=post.created.year,
+                              month=post.created.month, 
+                              day=post.created.day, 
+                              slug=post.slug) }}">
+        {{post['title']}}
+        </a>
+        </div>
+         
+        <div class="post-date">
+          last modified: {{post['last_modified'].strftime("%c")}}
+        </div>
+
+      </div>
+ 
+    </div>
+    <div class="post-content">
+      {{post['body'] | safe}}
+    </div>
+  </div>
+  
