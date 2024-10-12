@@ -1,0 +1,67 @@
+# Python bytecode
+*.py[cod]
+__pycache__/
+*.so
+*.egg
+*.egg-info
+*.pyd
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+*.wheel
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+.python-version
+
+# PyInstaller
+# Usually these files are written by a Python script from a compiled binary
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.cache/
+
+# Flask specific
+instance/
+*.db
+*.sqlite3
+instance/*
+instance/*.db
+*.log
+*.pot
+
+
+# Flask cache files
+flask_session/
+
+# VSCode project files
+.vscode/
+
+# macOS specific
+.DS_Store
+
+# Docker files
+docker-compose*.yaml
+*.dockerfile
