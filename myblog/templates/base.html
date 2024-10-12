@@ -1,17 +1,27 @@
 <!Doctype html>
-<title>{% block title %}{% endblock %} Layla Tadjpour's Blog</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <header>
+    <title>{% block title %}{% endblock %} Layla Tadjpour's Blog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </header>
+ 
 <nav>
-  <a href="/" class="main-title">
-  <h1>Layla Tadjpour's Blog</h1>
-  </a>
+  {% if request.endpoint != 'blog.index' %}
+    <a href="{{ url_for('index') }}" class="main-title">
+      <h1>Layla Tadjpour's Blog</h1>
+    </a>
+  {% else %}
+    <h1> Layla Tadjpour's Blog</h1>
+  {% endif %}
+  
   <ul>
     {% if g.user %}
       <li><span>{{ g.user['username'] }}</span>
-      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+      <li><a href="{{ url_for('auth.logout') }}">Logout</a>
     {% endif %}
   </ul>
 </nav>
+
 <section class="content">
   <header>
     {% block header %} {% endblock %}

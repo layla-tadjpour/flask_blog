@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}{% endblock %}</h1>
-  {% if g.user %}
-    <a class="action" href="{{ url_for('blog.create') }}">New Post</a>
-  {% endif %}
+  <div class="header-actions">
+    {% if g.user %}
+      <a class="action" href="{{ url_for('blog.create') }}">New Post</a>
+    {% endif %}
+  </div>
 {% endblock %}
 
 {% block content %}
@@ -12,15 +13,20 @@
     <article class="post">
       <header>
         <div>
-          <h2>{{ post['title'] }}</h2>
+          <h2> 
+            <a href="{{ url_for('blog.get_page', year=post.created.year, month=post.created.month, day=post.created.day, slug=post.slug) }}">
+            {{ post.title }}
+            </a>
+          </h2>
           <div class="about"> {{ post['username'] }}  {{ post['last_modified'].strftime("%x") }}</div>
         </div>
         {% if g.user['id'] == post['author_id'] %}
-          <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+          <a class="action" href="{{ url_for('blog.update', slug=post.slug ) }}">Edit</a>
         {% endif %}
       </header>
-      <p class="body">{{ post['body'] }}</p>
-      <a class="action" href="{{ url_for('blog.get_page', post_id=post['id']) }}">Read more</a>
+      <p class="body">{{ post['body'][:1000] }}</p>
+      <a class="action" href="{{ url_for('blog.get_page', year=post.created.year, month=post.created.month, day=post.created.day, slug=post.slug) }}">Read more</a>
+    </article>
     </article>
     {% if not loop.last %}
       <br> <br>
