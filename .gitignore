@@ -20,6 +20,7 @@ ENV/
 .venv/
 .ENV/
 .python-version
+.env
 
 # PyInstaller
 # Usually these files are written by a Python script from a compiled binary
