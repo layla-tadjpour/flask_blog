@@ -24,7 +24,7 @@
           <a class="action" href="{{ url_for('blog.update', slug=post.slug ) }}">Edit</a>
         {% endif %}
       </header>
-      <p class="body">{{ post['body'][:1000] }}</p>
+      <p class="body">{{ post['body'][:1000] | safe }}</p>
       <a class="action" href="{{ url_for('blog.get_page', year=post.created.year, month=post.created.month, day=post.created.day, slug=post.slug) }}">Read more</a>
     </article>
     </article>
