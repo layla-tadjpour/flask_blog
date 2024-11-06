@@ -12,12 +12,16 @@ from myblog import db
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
+
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
+    if not can_register_admin():
+        flash('Registration is disabled. Maximum number of administrators reached.', 'error')
+        return redirect(url_for('index'))
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        # db = get_db()
         error = None
 
         if not username:
@@ -93,3 +97,8 @@ def login_required(view):
         return view(**kwargs)
 
     return wrapped_view
+
+
+def can_register_admin(max_admins=1):
+    """Check if more admin users can be registered"""
+    return User.query.count() < max_admins

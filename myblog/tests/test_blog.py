@@ -88,14 +88,19 @@ def test_login_required_for_modifying_posts(client, path):
     response = client.post(path)
     assert response.headers['Location'].startswith('/auth/login')
 
-def test_author_required(client, auth, db_session):
+def test_author_required(client, auth, db_session, app):
     # Create two users
-    auth.register('user1', 'password1')
-    auth.register('user2', 'password2')
+    user1 = User(username='user1')
+    user1.set_password('password1')  # Assume set_password is a method to hash passwords
+    user2 = User(username='user2')
+    user2.set_password('password2')
+    db_session.add_all([user1, user2])
+    db_session.commit()
+
     
     # Log in as user1 and create a post
     auth.login('user1', 'password1')
-    user1 = User.get_user_by_username('user1')
+    #user1 = User.get_user_by_username('user1')
     post = Post.create_post(user1.id, 'User1 Post', 'This is user1\'s post')
     db_session.commit()
 
