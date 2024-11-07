@@ -154,3 +154,9 @@ article.post .action[href*="update"] {
     margin-top: 15px;
     font-size: 1 em;
 }
+
+
+.flash.error {
+  color: red;
+  font-weight: bold;
+}
